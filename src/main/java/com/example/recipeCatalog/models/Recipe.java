@@ -32,11 +32,11 @@ public class Recipe {
         return recipeType;
     }
 
-    public void setTitle (String recipeTitle){
+    public void setRecipeTitle(String recipeTitle){
         this.recipeTitle = recipeTitle;
     }
 
-    public void setMealType (String recipeType){
+    public void setRecipeType(String recipeType){
         this.recipeType = recipeType;
     }
 }
