@@ -9,35 +9,35 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "recipe_id")
     private Long id;
-    private String title;
-    private String mealType;
+    private String recipeTitle;
+    private String recipeType;
 
     public Recipe(){}
 
-    public Recipe(Long id, String title, String mealType){
+    public Recipe(Long id, String recipeTitle, String recipeType){
         this.id = id;
-        this.title = title;
-        this.mealType = mealType;
+        this.recipeTitle = recipeTitle;
+        this.recipeType = recipeTitle;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getRecipeTitle() {
+        return recipeTitle;
     }
 
-    public String getMealType() {
-        return mealType;
+    public String getRecipeType() {
+        return recipeType;
     }
 
-    public void setTitle (String title){
-        this.title = title;
+    public void setTitle (String recipeTitle){
+        this.recipeTitle = recipeTitle;
     }
 
-    public void setMealType (String mealType){
-        this.mealType = mealType;
+    public void setMealType (String recipeType){
+        this.recipeType = recipeType;
     }
 }
 
