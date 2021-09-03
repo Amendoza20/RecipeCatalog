@@ -18,6 +18,11 @@ public class RecipeController {
         return new ResponseEntity<>(service.findAllRecipesByRecipeType(recipeType), HttpStatus.OK);
     }
 
+    @GetMapping("/recipe/{recipeTitle}")
+    public ResponseEntity<Recipe> findRecipeByTitle(@PathVariable String recipeTitle) {
+        return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
+    }
+
     @PostMapping("/recipe")
     public ResponseEntity<Recipe> addRecipe(@RequestBody Recipe recipe){
         return new ResponseEntity<>(service.addRecipe(recipe), HttpStatus.OK);
