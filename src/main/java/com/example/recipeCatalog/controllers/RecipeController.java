@@ -22,15 +22,24 @@ public class RecipeController {
     public ResponseEntity<Recipe> findRecipeByTitle(@PathVariable String recipeTitle) {
         return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
     }
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello(){
+        System.out.println("hello");
+        return new ResponseEntity<>("hello", HttpStatus.OK);
+    }
 
     @PostMapping("/recipe")
     public ResponseEntity<Recipe> addRecipe(@RequestBody Recipe recipe){
-        return new ResponseEntity<>(service.addRecipe(recipe), HttpStatus.CREATED);
+        Recipe addedRecipe = service.addRecipe(recipe);
+        if (addedRecipe == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(addedRecipe, HttpStatus.CREATED);
     }
 
     @DeleteMapping("recipe/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable Long id){
-        return new ResponseEntity<>(service.delete(id), HttpStatus.OK)
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 
 
