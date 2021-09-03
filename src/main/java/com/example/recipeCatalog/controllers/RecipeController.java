@@ -25,7 +25,12 @@ public class RecipeController {
 
     @PostMapping("/recipe")
     public ResponseEntity<Recipe> addRecipe(@RequestBody Recipe recipe){
-        return new ResponseEntity<>(service.addRecipe(recipe), HttpStatus.OK);
+        return new ResponseEntity<>(service.addRecipe(recipe), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("recipe/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Long id){
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK)
     }
 
 
