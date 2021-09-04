@@ -15,7 +15,7 @@ public class MenuService {
     public MenuRepository repository;
 
     public Menu findMenuById(Long id) {
-        return repository.findByMenuId(id);
+        return repository.findById(id).orElse(null);
     }
 
     public boolean delete(Long id){
@@ -24,45 +24,21 @@ public class MenuService {
     }
 
     public Menu update(Long id, Menu menu){
-        Menu ogMenu = repository.findByMenuId(id);
+        Menu ogMenu = repository.findById(id).orElse(null);
         if(ogMenu == null) {
             return null;
         }
-        ogMenu.setMondayRecipe(menu.getMondayRecipe());
-        ogMenu.setTuesdayRecipe(menu.getTuesdayRecipe());
-        ogMenu.setWednesdayRecipe(menu.getWednesdayRecipe());
-        ogMenu.setThursdayRecipe(menu.getThursdayRecipe());
-        ogMenu.setFridayRecipe(menu.getFridayRecipe());
-        ogMenu.setSaturdayRecipe(menu.getSaturdayRecipe());
-        ogMenu.setSundayRecipe(menu.getSundayRecipe());
+        ogMenu.setRecipes(menu.getRecipes());
 
         return repository.save(menu);
 
     }
 
     public Menu createMenuFromRecipes(List<Recipe> recipes){
-        if(recipes.size() < 7){
+        if(recipes.size() != 7){
             return null;
         }
-        Menu menu = new Menu();
-        for(int i = 0; i <= 6; i++){
-            if (i == 0) {
-                menu.setMondayRecipe(recipes.get(i));
-            } else if (i == 1) {
-                menu.setSundayRecipe(recipes.get(i));
-            } else if (i == 2) {
-                menu.setWednesdayRecipe(recipes.get(i));
-            } else if (i == 3) {
-                menu.setSundayRecipe(recipes.get(i));
-            } else if (i == 4) {
-                menu.setFridayRecipe(recipes.get(i));
-            } else if (i == 5) {
-                menu.setSaturdayRecipe(recipes.get(i));
-            } else if (i == 6) {
-                menu.setSundayRecipe(recipes.get(i));
-            }
-        }
-        return menu;
+        return new Menu(recipes);
     }
 
 }

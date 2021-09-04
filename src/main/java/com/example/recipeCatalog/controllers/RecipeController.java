@@ -22,10 +22,15 @@ public class RecipeController {
     public ResponseEntity<Recipe> findRecipeByTitle(@PathVariable String recipeTitle) {
         return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
     }
-    @RequestMapping("/")
-    @ResponseBody
-    public String hello(){
-        return "hello";
+//    @RequestMapping("/")
+//    @ResponseBody
+//    public String hello(){
+//        return "hello";
+//    }
+
+    @GetMapping
+    public ResponseEntity<String> hello(){
+        return new ResponseEntity<>("Hello World", HttpStatus.OK);
     }
 
     @PostMapping("/recipe")

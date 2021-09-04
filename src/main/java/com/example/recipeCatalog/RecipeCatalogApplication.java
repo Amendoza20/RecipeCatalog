@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
-@ComponentScan("com.example.recipeCatalog.repositories.RecipeRepository")
+@ComponentScan("com.example.recipeCatalog.repositories")
 public class RecipeCatalogApplication {
 
 	public static void main(String[] args) {

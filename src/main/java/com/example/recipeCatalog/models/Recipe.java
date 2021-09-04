@@ -4,11 +4,15 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "RECIPE")
 public class Recipe {
     public enum Types{
         CHICKEN("Chicken"),
         BEEF("Beef"),
-        VEGAN("Vegan");
+        VEGAN("Vegan"),
+        VEGETARIAN("Vegetarian"),
+        PORK("Pork"),
+        FISH("Fish");
 
         String label;
 
