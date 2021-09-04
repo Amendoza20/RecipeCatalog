@@ -2,6 +2,7 @@ package com.example.recipeCatalog.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Menu {
@@ -37,7 +38,7 @@ public class Menu {
         this.sundayRecipe = sundayRecipe;
     }
 
-    public Long getId(){
+   public Long getId(){
         return id;
     }
 
