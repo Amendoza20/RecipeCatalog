@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class RecipeController {
     @Autowired
@@ -23,6 +25,10 @@ public class RecipeController {
         return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
     }
 
+    @GetMapping("/recipe/types")
+    public ResponseEntity<List<String>> findAllRecipeTypes(){
+        return new ResponseEntity<>(service.getRecipeTypes(), HttpStatus.OK);
+    }
     @GetMapping
     public ResponseEntity<String> hello(){
         return new ResponseEntity<>("Hello World", HttpStatus.OK);
