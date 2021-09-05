@@ -4,13 +4,33 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "RECIPE")
 public class Recipe {
+    public enum Types{
+        CHICKEN("Chicken"),
+        BEEF("Beef"),
+        VEGAN("Vegan"),
+        VEGETARIAN("Vegetarian"),
+        PORK("Pork"),
+        FISH("Fish");
+
+        String label;
+
+        private Types(String label) {
+            this.label = label;
+        }
+
+        public String getLabel(){
+            return label;
+        }
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "recipe_id")
     private Long id;
     private String recipeTitle;
     private String recipeType;
+
 
     public Recipe(){}
 

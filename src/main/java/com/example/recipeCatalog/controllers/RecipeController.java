@@ -23,9 +23,28 @@ public class RecipeController {
         return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
     }
 
+    @GetMapping
+    public ResponseEntity<String> hello(){
+        return new ResponseEntity<>("Hello World", HttpStatus.OK);
+    }
+
     @PostMapping("/recipe")
     public ResponseEntity<Recipe> addRecipe(@RequestBody Recipe recipe){
-        return new ResponseEntity<>(service.addRecipe(recipe), HttpStatus.OK);
+        Recipe addedRecipe = service.addRecipe(recipe);
+        if (addedRecipe == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(addedRecipe, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/recipe/{id}")
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id, @PathVariable Recipe recipe){
+        return new ResponseEntity<>(service.updateRecipe(id, recipe), HttpStatus.OK);
+    }
+
+    @DeleteMapping("recipe/{id}")
+    public ResponseEntity<Boolean> delete(@PathVariable Long id){
+        return new ResponseEntity<>(service.delete(id), HttpStatus.OK);
     }
 
 
