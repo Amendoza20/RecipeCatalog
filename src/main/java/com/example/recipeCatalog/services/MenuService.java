@@ -14,14 +14,10 @@ public class MenuService {
     @Autowired
     public MenuRepository repository;
 
-    public Menu findMenuById(Long id) {
+    public Menu findById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public boolean delete(Long id){
-        repository.deleteById(id);
-        return true;
-    }
 
     public Menu update(Long id, Menu menu){
         Menu ogMenu = repository.findById(id).orElse(null);
@@ -39,6 +35,11 @@ public class MenuService {
             return null;
         }
         return new Menu(recipes);
+    }
+
+    public boolean delete(Long id){
+        repository.deleteById(id);
+        return true;
     }
 
 }

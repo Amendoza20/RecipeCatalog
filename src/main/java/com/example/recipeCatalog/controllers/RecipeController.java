@@ -22,11 +22,6 @@ public class RecipeController {
     public ResponseEntity<Recipe> findRecipeByTitle(@PathVariable String recipeTitle) {
         return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
     }
-//    @RequestMapping("/")
-//    @ResponseBody
-//    public String hello(){
-//        return "hello";
-//    }
 
     @GetMapping
     public ResponseEntity<String> hello(){
@@ -40,6 +35,11 @@ public class RecipeController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(addedRecipe, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/recipe/{id}")
+    public ResponseEntity<Recipe> updateRecipe(@PathVariable Long id, @PathVariable Recipe recipe){
+        return new ResponseEntity<>(service.updateRecipe(id, recipe), HttpStatus.OK);
     }
 
     @DeleteMapping("recipe/{id}")
