@@ -11,27 +11,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+//@RequestMapping("/recipe")
 public class RecipeController {
     @Autowired
     private RecipeService service;
 
-    @RequestMapping("recipe/all")
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello(){
+        System.out.println("Hello");
+        return new ResponseEntity<>("Hello World", HttpStatus.OK);
+    }
+
+    @GetMapping("recipe/all")
     public ResponseEntity<Iterable<Recipe>> findAllRecipesByRecipeType(@PathVariable String recipeType) {
         return new ResponseEntity<>(service.findAllRecipesByRecipeType(recipeType), HttpStatus.OK);
     }
 
-    @GetMapping("/recipe/{recipeTitle}")
-    public ResponseEntity<Recipe> findRecipeByTitle(@PathVariable String recipeTitle) {
-        return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
-    }
+//    @GetMapping("/recipe/{recipeTitle}")
+//    public ResponseEntity<Recipe> findRecipeByTitle(@PathVariable String recipeTitle) {
+//        return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
+//    }
 
     @GetMapping("/recipe/types")
     public ResponseEntity<List<String>> findAllRecipeTypes(){
         return new ResponseEntity<>(service.getRecipeTypes(), HttpStatus.OK);
     }
-    @GetMapping
-    public ResponseEntity<String> hello(){
-        return new ResponseEntity<>("Hello World", HttpStatus.OK);
+
+    @GetMapping("/recipe")
+    public ResponseEntity<Iterable<Recipe>> findAllRecipe(){
+        return new ResponseEntity<>(service.findAllRecipes(), HttpStatus.OK);
     }
 
     @PostMapping("/recipe")

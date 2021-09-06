@@ -23,6 +23,10 @@ public class RecipeService {
         return repository.findAllByRecipeType(recipeType);
     }
 
+    public Iterable<Recipe> findAllRecipes(){
+        return repository.findAll();
+    }
+
     public List<String> getRecipeTypes(){
        return Arrays.stream(Recipe.Types.values())
            .map(Recipe.Types::getLabel)
