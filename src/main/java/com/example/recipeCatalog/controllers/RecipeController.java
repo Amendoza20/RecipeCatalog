@@ -2,6 +2,7 @@ package com.example.recipeCatalog.controllers;
 
 import com.example.recipeCatalog.models.Recipe;
 import com.example.recipeCatalog.services.RecipeService;
+import com.example.recipeCatalog.wrappers.RecipeTypesWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,11 @@ public class RecipeController {
 //    public ResponseEntity<Recipe> findRecipeByTitle(@PathVariable String recipeTitle) {
 //        return new ResponseEntity<>(service.findByRecipeTitle(recipeTitle), HttpStatus.OK);
 //    }
+
+    @GetMapping("/recipe/random")
+    public ResponseEntity<Iterable<Recipe>> findRandomRecipes(@RequestParam List<String> recipeTypes) {
+        return new ResponseEntity<>(service.findRandomRecipes(recipeTypes), HttpStatus.OK);
+    }
 
     @GetMapping("/recipe/types")
     public ResponseEntity<List<String>> findAllRecipeTypes(){

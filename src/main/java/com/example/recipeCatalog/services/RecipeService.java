@@ -5,8 +5,7 @@ import com.example.recipeCatalog.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +30,25 @@ public class RecipeService {
        return Arrays.stream(Recipe.Types.values())
            .map(Recipe.Types::getLabel)
            .collect(Collectors.toList());
+    }
+
+    public List<Recipe> findRandomRecipes(List<String> recipeTypes){
+        Map<String, Integer> map = new HashMap<>();
+
+        for(String type : recipeTypes){
+            if(map.containsKey(type)){
+                map.put(type, map.get(type) + 1);
+            } else {
+                map.put(type, 1);
+            }
+        }
+
+        List<Recipe> recipes = new ArrayList<>();
+
+        for(Map.Entry<String, Integer> entry : map.entrySet()){
+            recipes.addAll(repository.findRandomRecipes(entry.getKey(), entry.getValue()));
+        }
+        return recipes;
     }
 
     public Recipe addRecipe(Recipe recipe) {

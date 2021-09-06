@@ -34,7 +34,8 @@ public class MenuService {
         if(recipes.size() != 7){
             return null;
         }
-        return new Menu(recipes);
+        Menu menu = repository.save(new Menu(recipes));
+        return menu;
     }
 
     public boolean delete(Long id){
